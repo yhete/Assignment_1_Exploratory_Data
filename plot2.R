@@ -10,20 +10,12 @@ head(data)
 ## Set date and Time Variables
 data$DT <- paste(data$Date, data$Time)
 data$DT <- strptime(data$DT, "%d/%m/%Y %H:%M:%S")
-head(data)
 
 ## Subset specific time period
-DSub <- subset(data, as.Date(DT) >= "2007-02-01" 
-                         & as.Date(DT) <= "2007-02-02")
+DSub <- subset(data, as.Date(DT) >= "2007-02-01" & as.Date(DT) <= "2007-02-02")
 
-## plot 1
-png("plot1.png")
-hist(DSub$Global_active_power, col="Red", 
-     xlab = "Global Active Power (kilowatts)",
-     ylab = "Frequency",
-     main = "Global Active Power")
+## plot 2
+png("plot2.png")
+with(DSub, plot(DT, Global_active_power, pch = ".", 
+                type="l", xlab = "", ylab = "Global Active Power (kilowatts)"))
 dev.off()
-
-
-
-
